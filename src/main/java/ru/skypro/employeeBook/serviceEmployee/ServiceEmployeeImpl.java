@@ -4,25 +4,25 @@ import org.springframework.stereotype.Service;
 import ru.skypro.employeeBook.exceptions.EmployeeAlreadyAddedException;
 import ru.skypro.employeeBook.exceptions.EmployeeNotFoundException;
 import ru.skypro.employeeBook.model.Employee;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ServiceEmployeeImpl implements ServiceEmployee {
 
-    private final List<Employee> employees = new ArrayList<>();
+    private final Map<String, Employee> employees = new HashMap<>();
+    // Заменяем список на мапу
 
     @Override
     public Employee addEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
 
-        if (employees.contains(employee)) {
+        if (employees.containsKey(employee.getFullName())) {
+            // contains(employee) заменяем на containsKey(employee.getFullName())
             throw new EmployeeAlreadyAddedException("Сотрудник с такими ФИО уже имеется");
         }
 
-        employees.add(employee);
+        employees.put(employee.getFullName(), employee);
+        // add(employee) заменяем на put(employee.getFullName(), employee)
         return employee;
     }
 
@@ -30,11 +30,13 @@ public class ServiceEmployeeImpl implements ServiceEmployee {
     public Employee removeEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
 
-        if (!employees.contains(employee)) {
+        if (!employees.containsKey(employee.getFullName())) {
+            // contains(employee) заменяем на containsKey(employee.getFullName())
             throw new EmployeeNotFoundException("Сотрудник с такими ФИО не найден");
         }
 
-        employees.remove(employee);
+        employees.remove(employee.getFullName());
+        // remove(employee) заменяем на remove(employee.getFullName())
         return employee;
     }
 
@@ -42,7 +44,11 @@ public class ServiceEmployeeImpl implements ServiceEmployee {
     public Employee findEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
 
-        if (!employees.contains(employee)) {
+        // Поиск сотрудника по ключу
+        // Employee employee = employees.get(employee.getFullName());
+
+        if (!employees.containsKey(employee.getFullName())) {
+            // contains(employee) заменяем на containsKey(employee.getFullName())
             throw new EmployeeNotFoundException("Сотрудник с такими ФИО не найден");
         }
 
@@ -53,7 +59,9 @@ public class ServiceEmployeeImpl implements ServiceEmployee {
     @Override
     public Collection<Employee> findAll() {
 
-        return employees;
+        return employees.values();
+        // return employees заменяем на return employees.values(), то есть добавляем метод
+        // values()
     }
 
 }
