@@ -38,6 +38,8 @@ public class ServiceEmployeeImpl implements ServiceEmployee {
         employees.remove(employee.getFullName());
         // remove(employee) заменяем на remove(employee.getFullName())
         return employee;
+        // второй вариант
+        // return employees.remove(employee.getFullName());
     }
 
     @Override
@@ -53,6 +55,8 @@ public class ServiceEmployeeImpl implements ServiceEmployee {
         }
 
         return employee;
+        // второй вариант
+        // return employees.get(employee.getFullName());
 
     }
 
