@@ -22,6 +22,11 @@ public class Employee {
         return lastName;
     }
 
+    public String getFullName() {
+        return firstName + " " +  lastName;
+    }
+    // Создаем дополнительный метод getFullName() для получения ключа в мапе
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

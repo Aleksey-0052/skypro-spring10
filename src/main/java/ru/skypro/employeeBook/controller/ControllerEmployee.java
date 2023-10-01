@@ -8,7 +8,7 @@ import ru.skypro.employeeBook.model.Employee;
 import ru.skypro.employeeBook.serviceEmployee.ServiceEmployeeImpl;
 import java.util.Collection;
 
-@RequestMapping("/employee")
+@RequestMapping("/employees")
 @RestController
 public class ControllerEmployee {
 

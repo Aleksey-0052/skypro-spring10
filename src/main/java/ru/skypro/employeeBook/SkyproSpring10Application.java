@@ -9,6 +9,8 @@ public class SkyproSpring10Application {
 	public static void main(String[] args) {
 
 		SpringApplication.run(SkyproSpring10Application.class, args);
+
+
 	}
 
 }
